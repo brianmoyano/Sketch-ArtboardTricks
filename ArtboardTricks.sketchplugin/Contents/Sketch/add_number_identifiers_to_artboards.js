@@ -74,12 +74,16 @@ function prependNumbersToArtboards(context) {
 
     // strip off current digits and dots
     var fullName = meta.artboard.name();
+
     var currentNamePath = fullName.substring(0, fullName.lastIndexOf('/') + 1);
     var currentName = fullName.slice(currentNamePath.length);
-    currentName = currentName.replace(/^.*[_]/, '').replace(/\s/g, '.'); // added remove spaces + lowercase
+    
+    if(!isNaN(currentName))
+      currentName = '';
+    else currentName = currentName.replace(/^\d{2}\.\d{2}_/, '').replace(/\s/g, '.'); // remove prefix and clean spaces
 
     // add prefix to the name
-    meta.artboard.setName(currentNamePath + prefix + '_' +  currentName);
+    meta.artboard.setName(currentNamePath + prefix + (currentName ? '_' +  currentName : ''));
 
     ++col;
     if (artboardsAtYPosition[meta.t] <= col) {
