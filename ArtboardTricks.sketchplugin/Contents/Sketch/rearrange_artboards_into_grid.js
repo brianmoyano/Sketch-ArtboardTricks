@@ -167,10 +167,20 @@ function rearrangeArtboardsIntoGrid(context) {
 
 
 function getSpacingForPage(context, page) {
-  return context.command.valueForKey_onLayer_(SPACING_LAYER_KEY, page) || {
-    xSpacing: DEFAULT_X_SPACING,
-    ySpacing: DEFAULT_Y_SPACING
-  };
+  // return context.command.valueForKey_onLayer_(SPACING_LAYER_KEY, page) || {
+  //   xSpacing: DEFAULT_X_SPACING,
+  //   ySpacing: DEFAULT_Y_SPACING
+  // };
+
+  let userDefaults = getUserDefaults(context);
+  let storedValue = userDefaults.stringForKey_(SPACING_LAYER_KEY);
+  try {
+    return JSON.parse(storedValue) || {
+      xSpacing: DEFAULT_X_SPACING,
+      ySpacing: DEFAULT_Y_SPACING
+    };
+  } catch (e) {
+  }
 }
 
 
@@ -190,7 +200,11 @@ function onSetCustomSpacing(context) {
 
     if (spacing.xSpacing && spacing.ySpacing) {
       // success
-      context.command.setValue_forKey_onLayer_(spacing, SPACING_LAYER_KEY, page);
+      //context.command.setValue_forKey_onLayer_(spacing, SPACING_LAYER_KEY, page);
+      let userDefaults = getUserDefaults(context);
+      userDefaults.setObject_forKey_(JSON.stringify(spacing), SPACING_LAYER_KEY);
+      userDefaults.synchronize(); // save
+
       context.document.showMessage('Saved spacing for rearrange.');
       return;
     }

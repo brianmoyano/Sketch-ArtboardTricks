@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+function getUserDefaults(context) {
+  let pluginId = String(context.plugin.identifier());
+  return NSUserDefaults.alloc().initWithSuiteName(pluginId);
+}
+
 function isArtboard(layer) {
   return layer instanceof MSArtboardGroup || layer instanceof MSSymbolMaster;
 }

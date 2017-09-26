@@ -80,7 +80,7 @@ function prependNumbersToArtboards(context) {
     
     if(!isNaN(currentName))
       currentName = '';
-    else currentName = currentName.replace(/^\d{2}\.\d{2}_/, '').replace(/\s/g, '.'); // remove prefix and clean spaces
+    else currentName = currentName.replace(/^\d{2}\.\d{2}/, '').replace(/\s/g, '.'); // remove prefix and clean spaces
 
     // add prefix to the name
     meta.artboard.setName(currentNamePath + prefix + (currentName ? '_' +  currentName : ''));
