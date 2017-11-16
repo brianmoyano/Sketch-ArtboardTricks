@@ -1,66 +1,82 @@
 {
-  "commands" : [
+  "identifier": "net.nurik.roman.sketch.artboardtricks",
+  "authorEmail": "roman@nurik.net",
+  "author": "Roman Nurik",
+  "appcast": "https://api.sketchpacks.com/v1/plugins/net.nurik.roman.sketch.artboardtricks/appcast",
+  "compatibleVersion": 41,
+  "bundleVersion": 1,
+  "name": "Artboard Tricks",
+  "commands": [
     {
-      "script" : "both.js",
-      "handler" : "onRun",
-      "name" : "Magic",
-      "shortcut" : "cmd º",
-      "identifier" : "select_artboards_containing_selection_and_set_rearrange_spacing"
+      "script": "command-magic.js",
+      "handler": "onRun",
+      "shortcut": "cmd º",
+      "name": "Magic",
+      "identifier": "command-magic",
+      "description": "The All-In-One all mighty solution to your problems",
+      "icon": "icon_select_artboard.png"
     },
     {
-      "script" : "select_artboards_containing_selection.js",
-      "handler" : "onRun",
-      "shortcut" : "ctrl cmd option s",
-      "name" : "Select Artboards Containing Selection",
-      "identifier" : "select_artboards_containing_selection"
+      "script": "command-select-artboards.js",
+      "handler": "onRun",
+      "shortcut": "ctrl cmd option s",
+      "name": "Select Artboards Containing Selection",
+      "identifier": "command-select-artboards",
+      "description": "For each selected layer, selects its containing artboard instead.",
+      "icon": "icon_select_artboard.png"
     },
     {
-      "script" : "rearrange_artboards_into_grid.js",
-      "handler" : "onRun",
-      "shortcut" : "ctrl cmd option r",
-      "name" : "Rearrange Artboards Into Grid",
-      "identifier" : "rearrange_artboards_into_grid"
+      "script": "command-rearrange-grid.js",
+      "handler": "onRun",
+      "shortcut": "ctrl cmd option r",
+      "name": "Rearrange Artboards Into Grid",
+      "identifier": "command-rearrange-grid",
+      "description": "Rearranges artboards on the current page into rows, based on the artboard's current position.",
+      "icon": "icon_rearrange.png"
     },
     {
-      "script" : "rearrange_artboards_into_grid.js",
-      "handler" : "onSetCustomSpacing",
-      "name" : "Set Artboard Spacing for Rearrange",
-      "identifier" : "set_rearrange_spacing"
+      "script": "command-preferences.js",
+      "handler": "onRun",
+      "name": "Artboard Tricks Preferences",
+      "identifier": "command-preferences",
+      "description": "Customize how Artboard Tricks behaves.",
+      "icon": "icon_preferences.png"
     },
     {
-      "script" : "add_number_identifiers_to_artboards.js",
-      "handler" : "onRun",
-      "shortcut" : "ctrl cmd option n",
-      "name" : "Prefix Artboard Names With Numbers",
-      "identifier" : "add_number_identifiers_to_artboards"
+      "script": "command-numbers-add.js",
+      "handler": "onRun",
+      "shortcut": "ctrl cmd option n",
+      "name": "Prefix Artboard Names With Numbers",
+      "identifier": "command-numbers-add",
+      "description": "Adds number prefixes to artboards on the current page based on their position (best used in conjunction with the Rearrange command).",
+      "icon": "icon_prefix_add.png"
     },
     {
-      "script" : "remove_number_identifiers_from_artboards.js",
-      "handler" : "onRun",
-      "name" : "Remove Artboard Number Prefixes",
-      "identifier" : "remove_number_identifiers_from_artboards"
+      "script": "command-numbers-remove.js",
+      "handler": "onRun",
+      "name": "Remove Artboard Number Prefixes",
+      "identifier": "command-numbers-remove",
+      "description": "Removes number prefixes from artboards on the current page.",
+      "icon": "icon_prefix_remove.png"
     }
   ],
-  "menu" : {
-    "items" : [
-      "select_artboards_containing_selection_and_set_rearrange_spacing",
+  "menu": {
+    "items": [
+      "command-magic",
       "-",
-      "select_artboards_containing_selection",
+      "command-rearrange-grid",
       "-",
-      "rearrange_artboards_into_grid",
-      "set_rearrange_spacing",
+      "command-numbers-add",
+      "command-numbers-remove",
       "-",
-      "add_number_identifiers_to_artboards",
-      "remove_number_identifiers_from_artboards"
+      "command-select-artboards",
+      "-",
+      "command-preferences"
     ],
-    "title" : "Artboard Tricks"
+    "title": "Artboard Tricks"
   },
-  "identifier" : "net.nurik.roman.sketch.artboardtricks",
-  "version" : "1.0.5",
-  "compatibleVersion": 41,
-  "description" : "A variety of tricks for dealing with artboards.",
-  "authorEmail" : "roman@nurik.net",
-  "author" : "Roman Nurik",
-  "appcast": "https://api.sketchpacks.com/v1/plugins/net.nurik.roman.sketch.artboardtricks/appcast",
-  "name" : "Artboard Tricks"
+  "version": "1.10.2",
+  "description": "A Sketch plugin containing variety of tricks for dealing with artboards.",
+  "homepage": "https://github.com/romannurik/Sketch-ArtboardTricks#readme",
+  "disableCocoaScriptPreprocessor": true
 }

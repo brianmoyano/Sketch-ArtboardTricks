@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Google Inc.
+ * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,12 @@
  * limitations under the License.
  */
 
-@import 'util.js'
+const util = require('./sketch-util');
+const prefs = require('./prefs');
 
-
-const DEFAULT_X_SPACING = 100;
-const DEFAULT_Y_SPACING = 400;
-const SPACING_LAYER_KEY = 'artboard_tricks_spacing';
-
-
-function onRun(context) {
-  rearrangeArtboardsIntoGrid(context);
-}
-
-
-function rearrangeArtboardsIntoGrid(context) {
+function rearrangeGrid(context) {
   var page = context.document.currentPage();
-
-  var spacing = getSpacingForPage(context, page);
+  var currentPrefs = prefs.resolvePagePrefs(context, page);
 
   var artboardMetas = [];
   var artboards = page.artboards();
@@ -48,8 +37,10 @@ function rearrangeArtboardsIntoGrid(context) {
     });
   }
 
-  var rowStarterArtboardMetas = [];
+  /******************************/
 
+  var rowStarterArtboardMetas = [];
+  
   // find row-starting artboards
   for (var i = 0; i < artboardMetas.length; i++) {
     var leftmostInRow = true;
@@ -144,9 +135,9 @@ function rearrangeArtboardsIntoGrid(context) {
       var frame = metasInRow[c].artboard.frame();
       frame.setX(x);
       frame.setY(y);
-      x += frame.width() + spacing.xSpacing;
+      x += frame.width() + currentPrefs.xSpacing;
     }
-    y += rowHeights[r] + spacing.ySpacing;
+    y += rowHeights[r] + currentPrefs.ySpacing;
   }
 
   // update artboard position in the sidebar
@@ -161,54 +152,93 @@ function rearrangeArtboardsIntoGrid(context) {
   artboards.reverse();
   artboards.forEach(function(a) {
     page.removeLayer(a);
-    page.addLayers(NSArray.arrayWithObjects(a));
+    page.addLayers(NSArray.arrayWithObject(a));
   });
 }
 
+function numbersAdd(context) {
+  let page = context.document.currentPage();
+  let currentPrefs = prefs.resolvePagePrefs(context, page);
 
-function getSpacingForPage(context, page) {
-  // return context.command.valueForKey_onLayer_(SPACING_LAYER_KEY, page) || {
-  //   xSpacing: DEFAULT_X_SPACING,
-  //   ySpacing: DEFAULT_Y_SPACING
-  // };
+  let artboardMetas = [];
+  let artboards = page.artboards();
 
-  let userDefaults = getUserDefaults(context);
-  let storedValue = userDefaults.stringForKey_(SPACING_LAYER_KEY);
-  try {
-    return JSON.parse(storedValue) || {
-      xSpacing: DEFAULT_X_SPACING,
-      ySpacing: DEFAULT_Y_SPACING
-    };
-  } catch (e) {
+  // locally cache artboard positions
+  let uniqueYPositions = new Set();
+  for (let i = 0; i < artboards.count(); i++) {
+    let artboard = artboards.objectAtIndex(i);
+    let frame = artboard.frame();
+    artboardMetas.push({
+      artboard: artboard,
+      l: frame.minX(),
+      t: frame.minY(),
+      r: frame.maxX(),
+      b: frame.maxY()
+    });
+
+    uniqueYPositions.add(Number(frame.minY()));
+  }
+
+  // sort artboards top-down then left-right
+  artboardMetas.sort((a, b) => {
+    if (a.t == b.t) {
+      return a.l - b.l;
+    } else {
+      return a.t - b.t;
+    }
+  });
+
+  // update artboard names
+  let row = -1;
+  let col = -1;
+  let subCol = 0;
+  let lastMetaT = null;
+  for (let i = 0; i < artboardMetas.length; i++) {
+    let meta = artboardMetas[i];
+
+    // strip off current digits and dots
+    let fullName = meta.artboard.name();
+    let currentNamePath = fullName.substring(0, fullName.lastIndexOf('/') + 1);
+    let currentName = fullName.slice(currentNamePath.length);
+    currentName = currentName.replace(/^\d*[\.-]?\d*[_]?/, ''); // remove prefix and clean spaces
+    let [_, currentNumber, baseName] = currentName.match(/^([\d.]*)[_-]?(.*)$/);
+
+    if (lastMetaT === null || lastMetaT != meta.t) {
+      lastMetaT = meta.t;
+      ++row;
+      subCol = 0;
+      col = -1;
+    }
+
+    if (currentNumber.indexOf('.') >= 0) {
+      // in a subcol
+      ++subCol;
+      col = Math.max(0, col);
+    } else {
+      // not in a subcol
+      if (subCol >= 0) {
+        // no longer in a subcol
+        subCol = 0;
+      }
+
+      ++col;
+    }
+
+    // create prefix (e.g. "301" and "415.4" with subflows)
+    //let prefix = util.zeropad(row, numRows >= 10 ? 2 : 1)
+    let prefix = util.zeropad(row, 2)
+        + currentPrefs.rowColSeparator
+        + util.zeropad(col, 2)
+        + (subCol > 0 ? '.' + (subCol) : '')
+        + (baseName ? currentPrefs.numberTitleSeparator : '');
+
+    // add prefix to the name
+    meta.artboard.setName(`${currentNamePath}${prefix}${baseName}`);
   }
 }
 
 
-function onSetCustomSpacing(context) {
-  var page = context.document.currentPage();
-
-  var currentSpacing = getSpacingForPage(context, page);
-
-  var spacingStr = context.document.askForUserInput_initialValue(
-      'Enter comma-separated X and Y spacing.', currentSpacing.xSpacing + ', ' + currentSpacing.ySpacing);
-  var spacings = spacingStr.split(/,/g);
-  if (spacings.length >= 2) {
-    var spacing = {
-      xSpacing: parseInt(spacings[0], 10),
-      ySpacing: parseInt(spacings[1], 10)
-    };
-
-    if (spacing.xSpacing && spacing.ySpacing) {
-      // success
-      //context.command.setValue_forKey_onLayer_(spacing, SPACING_LAYER_KEY, page);
-      let userDefaults = getUserDefaults(context);
-      userDefaults.setObject_forKey_(JSON.stringify(spacing), SPACING_LAYER_KEY);
-      userDefaults.synchronize(); // save
-
-      context.document.showMessage('Saved spacing for rearrange.');
-      return;
-    }
-  }
-
-  context.document.showMessage('Invalid input: ' + spacingStr);
+export default function(context) {
+  rearrangeGrid(context);
+  numbersAdd(context);
 }
