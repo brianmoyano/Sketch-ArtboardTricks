@@ -12,6 +12,6 @@ For further information and documentation take a look at the original <a href="h
 
 This signle command allows user to rearrange artboards while also renaming them with custom prefixes.
 
-## Custom prefix: RR\_CC\_Artboard name
+## Custom prefix: RR\.CC\_Artboard name
 
-The prefix structure arrange Artboards based on 2-digit for Row (RR) and 2-digit for Columns (CC).
+The prefix structure arrange Artboards based on 2-digit for Row (RR), dot-separation, and 2-digit for Columns (CC); before the original Artboard name.

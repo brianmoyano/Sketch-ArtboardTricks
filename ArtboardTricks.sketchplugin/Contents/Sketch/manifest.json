@@ -11,9 +11,9 @@
       "script": "command-magic.js",
       "handler": "onRun",
       "shortcut": "cmd º",
-      "name": "Magic",
+      "name": "AeroMagic 🎈",
       "identifier": "command-magic",
-      "description": "The All-In-One all mighty solution to your problems",
+      "description": "The All-In-One almighty solution our daily workflow",
       "icon": "icon_select_artboard.png"
     },
     {
