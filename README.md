@@ -6,8 +6,6 @@ For further information and documentation take a look at the original <a href="h
 
 # Modifications
 
----
-
 ## New Command: AeroMagic 🎈
 
 This signle command allows user to rearrange artboards while also renaming them with custom prefixes.
