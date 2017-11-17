@@ -1,6 +1,6 @@
 # Artboard Tricks (AeroHacked) plugin for Sketch
 
-This is fork is an adaptation created by & for <a href="https://aerolab.co/">Aerolab</a> to match our daily workflow.
+This is fork is an adaptation created by & for <a href="https://aerolab.co/">Aerolab</a> to fit our daily workflow.
 
 For further information and documentation take a look at the original <a href="https://github.com/romannurik/Sketch-ArtboardTricks">Artboard Tricks</a>.
 
