@@ -4,11 +4,11 @@ This fork was modified by <a href="https://aerolab.co/">Aerolab</a> to fit our d
 
 For further information and documentation take a look at the original plugin :point_right: <a href="https://github.com/romannurik/Sketch-ArtboardTricks">romannurik/Sketch-ArtboardTricks</a>
 
-### [New command] AeroMagic 🎈
+### AeroMagic 🎈
 
 This signle command allows user to rearrange artboards while also renaming them with custom prefixes.
 
-### [Custom prefix] RR\.CC\_Artboard name
+### RR\.CC\_Artboard name
 
 The prefix structure arrange Artboards based on 2-digit for Row (RR), dot-separation and 2-digit for Columns (CC); before the original Artboard name.
 
