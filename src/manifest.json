@@ -2,7 +2,6 @@
   "identifier" : "net.nurik.roman.sketch.artboardtricks",
   "authorEmail" : "roman@nurik.net",
   "author" : "Roman Nurik",
-  "appcast": "https://api.sketchpacks.com/v1/plugins/net.nurik.roman.sketch.artboardtricks/appcast",
   "compatibleVersion": 41,
   "bundleVersion": 1,
   "name": "Artboard Tricks",

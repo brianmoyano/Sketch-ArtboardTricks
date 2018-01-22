@@ -2,7 +2,6 @@
   "identifier": "net.nurik.roman.sketch.artboardtricks",
   "authorEmail": "roman@nurik.net",
   "author": "Roman Nurik",
-  "appcast": "https://api.sketchpacks.com/v1/plugins/net.nurik.roman.sketch.artboardtricks/appcast",
   "compatibleVersion": 41,
   "bundleVersion": 1,
   "name": "Artboard Tricks",
@@ -78,5 +77,6 @@
   "version": "1.10.2",
   "description": "A Sketch plugin containing variety of tricks for dealing with artboards.",
   "homepage": "https://github.com/romannurik/Sketch-ArtboardTricks#readme",
-  "disableCocoaScriptPreprocessor": true
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com/romannurik/Sketch-ArtboardTricks/master/.appcast.xml"
 }
