@@ -14,4 +14,5 @@ The prefix structure arrange Artboards based on 2-digit for Row (RR), dot-separa
 
 ### To-do
 
+* [ ] Automatic updates for new releases
 * [ ] Remove " copy" when duplicating artboards
