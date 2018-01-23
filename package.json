@@ -10,14 +10,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/romannurik/Sketch-ArtboardTricks.git"
+		"url": "git+https://github.com/brianmoyano/Sketch-ArtboardTricks.git"
 	},
 	"author": "Roman Nurik <roman@nurik.net>",
 	"license": "Apache-2.0",
 	"bugs": {
-		"url": "https://github.com/romannurik/Sketch-ArtboardTricks/issues"
+		"url": "https://github.com/brianmoyano/Sketch-ArtboardTricks/issues"
 	},
-	"homepage": "https://github.com/romannurik/Sketch-ArtboardTricks#readme",
+	"homepage": "https://github.com/brianmoyano/Sketch-ArtboardTricks#readme",
 	"engines": {
 		"sketch": ">=3.0"
 	},
