@@ -8,11 +8,11 @@ For further information and documentation take a look at the original plugin :po
 
 This signle command allows user to rearrange artboards while also renaming them with custom prefixes.
 
-### RR\.CC\_Artboard name
+### 00\.00\_Artboard name
 
-The prefix structure arrange Artboards based on 2-digit for Row (RR), dot-separation and 2-digit for Columns (CC); before the original Artboard name.
+The prefix structure arrange Artboards based on 2-digit row, dot-separation and 2-digit for columns (RR.CC); before the original Artboard name.
 
 ### To-do
 
-* [ ] Automatic updates for new releases
-* [ ] Remove " copy" when duplicating artboards
+* [x] Automatic updates for new releases (@[2.0.1](https://github.com/brianmoyano/Sketch-ArtboardTricks/releases/tag/2.0.1]))
+* [ ] ~Remove " copy" when duplicating artboards~
