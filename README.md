@@ -14,5 +14,5 @@ The prefix structure arrange Artboards based on 2-digit row, dot-separation and 
 
 ### To-do
 
-* [x] Automatic updates for new releases (@[2.0.1](https://github.com/brianmoyano/Sketch-ArtboardTricks/releases/tag/2.0.1]))
+* [x] Automatic updates for new releases (released @ [2.0.1](https://github.com/brianmoyano/Sketch-ArtboardTricks/releases/tag/2.0.1))
 * [ ] ~Remove " copy" when duplicating artboards~
