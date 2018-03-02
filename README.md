@@ -1,6 +1,6 @@
 # Artboard Tricks (AeroHacked) plugin for Sketch
 
-This fork was modified by <a href="https://aerolab.co/">Aerolab</a> to fit our daily workflow.
+This fork was modified by <a href="https://aerolab.co/">Aerolab</a> to fit our daily workflow. You can download the latest release from here: https://github.com/brianmoyano/Sketch-ArtboardTricks/releases
 
 For further information and documentation take a look at the original plugin :point_right: <a href="https://github.com/romannurik/Sketch-ArtboardTricks">romannurik/Sketch-ArtboardTricks</a>
 
