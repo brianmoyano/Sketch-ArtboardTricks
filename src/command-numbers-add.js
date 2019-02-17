@@ -64,7 +64,7 @@ export default function(context) {
     let fullName = meta.artboard.name();
     let currentNamePath = fullName.substring(0, fullName.lastIndexOf('/') + 1);
     let currentName = fullName.slice(currentNamePath.length);
-    let [_, currentNumber, baseName] = currentName.match(/^([\d.]*)[_-]?(.*)$/);
+    let [_, currentNumber, baseName] = currentName.match(/^([\d.]*)${currentPrefs.numberTitleSeparator}(.*)$/);
 
     if (lastMetaT === null || lastMetaT != meta.t) {
       lastMetaT = meta.t;
