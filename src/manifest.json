@@ -1,10 +1,10 @@
 {
   "identifier" : "aerolab.sketch.artboardtricks",
   "authorEmail" : "roman@nurik.net",
-  "author" : "Roman Nurik (ripped)",
+  "author" : "Roman Nurik",
   "compatibleVersion": 41,
   "bundleVersion": 1,
-  "name": "Artboard Tricks",
+  "name": "Artboard Tricks 🎈",
   "commands" : [
     {
       "script" : "command-magic.js",
