@@ -1,3 +1,18 @@
+
+#========================
+# OS Files
+#========================
+
 .DS_Store
-/node_modules
+$RECYCLE.BIN/
+Desktop.ini
+
+#========================
+# Proyect Files
+#========================
+
+.sass-cache/
+npm-debug.log*
+node_modules/
+bower_components/
 ArtboardTricks.sketchplugin.zip
